@@ -451,3 +451,108 @@
             <p>💡 Будьте внимательны! Одинаковая картинка не гарантирует одинаковое качество товара.</p>
         </div>
     </section>
+    <button class="back-to-top" title="Вернуться наверх" aria-label="Вернуться к навигации"></button>
+
+    <style>
+        /* Базовые стили */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 3.5rem;
+            height: 3.5rem;
+            background: linear-gradient(145deg, #2d2d2d, #404040);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition:
+                opacity 0.3s ease,
+                visibility 0.3s ease,
+                transform 0.2s ease;
+            box-shadow:
+                0 4px 12px rgba(0, 0, 0, 0.15),
+                inset 0 2px 4px rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Стрелка */
+        .back-to-top::after {
+            content: "↑";
+            color: #fff;
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-top: -2px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Состояния */
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px) scale(1.05);
+            background: linear-gradient(145deg, #404040, #2d2d2d);
+            box-shadow:
+                0 6px 16px rgba(0, 0, 0, 0.2),
+                inset 0 2px 4px rgba(255, 255, 255, 0.1);
+        }
+
+        .back-to-top:active {
+            transform: translateY(0) scale(0.95);
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .back-to-top {
+                bottom: 1.5rem;
+                right: 1.5rem;
+                width: 3rem;
+                height: 3rem;
+            }
+
+            .back-to-top::after {
+                font-size: 1.4rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .back-to-top {
+                bottom: 1rem;
+                right: 1rem;
+                width: 2.8rem;
+                height: 2.8rem;
+            }
+
+            .back-to-top::after {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+
+    <script>
+        // Показываем/скрываем кнопку при прокрутке
+        const backToTopButton = document.querySelector('.back-to-top');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                backToTopButton.classList.add('show');
+            } else {
+                backToTopButton.classList.remove('show');
+            }
+        });
+
+        // Плавная прокрутка при клике
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
